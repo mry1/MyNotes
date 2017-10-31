@@ -1,0 +1,10 @@
+find命令
+find . -type f -name Build.java    查找当前目录下名称为Build.java的普通文件，如果不加-type f参数，则搜索普通文件+特殊文件+目录。
+
+sudo ln -s 源文件 目标文件 
+举例：
+当前目录是/local，而我经常要访问/usr/local/linux/work，那么我就可以使用在local下建立一个文件linkwork，然后sudo ln -s /usr/local/linux/work  /local/linkwork   即建立两者之间的链接。
+
+删除链接 
+rm -rf   symbolic_name   注意不是rm -rf   symbolic_name/ 
+那么上面我就是rm -rf   /local/linkwork

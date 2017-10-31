@@ -1,0 +1,10 @@
+打patch流程
+1. 清理代码，更新至最新
+2. 解压patch
+3. 对比patch alps 和 gionee 目录
+4. 对比patch alps 和 gionee/project 目录
+5, 合入gionee 和 gionee/project patch
+6. 对比patch alps 和 代码的alps，合入冲突的。新增的， 以及检查是否有删除的
+7. 对比patch alps 的package 和 代码的alps/package_org
+8. 更新excel表
+9 上传patch

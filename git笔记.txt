@@ -1,0 +1,70 @@
+git remote:
+	1.git remote 查看当前的远程库
+	2.git remote -v 查看远程库详细信息
+
+git pull:
+	1.git pull <远程主机名> <远程分支名>:<本地分支名>
+		git pull origin next:master 取回远程主机origin的next分支，与本地的master分支合并
+		如果远程分支(next)与当前分支合并，则冒号后边的部分可以省略
+		git pull origin next
+
+		建立追踪关系
+		git branch --set-upstream master origin/next
+		上面命令指定本地master分支追踪origin/next分支
+		如果当前分支与远程分支存在追踪关系，git pull可以省略远程分支名
+		git pull origin
+		如果当前分支只有一个追踪分支，那么主机名都可以省略
+		git pull
+
+	2.git pull --rebase,这里表示把你的本地当前分支里的每个提交(commit)取消掉，并且把它们临时保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把本地当前分支更新为最新的"origin"分支，最后把保存的这些补丁应用到本地当前分支上
+	git pull相当于git fetch然后git merge
+	git pull使用给定的参数运行git fetch，并调用git merge将检索到的分支头合并到当前分支中。 使用--rebase，它运行git rebase而不是git merge
+
+git push:
+	git push <远程主机名> <本地分支名>:<远程分支名>
+	git push origin master
+	上面命令表示：将本地master分支推送到origin主机上的master分支上，如果origin主机上不存在master分支，则会被新建。
+
+	如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支
+	git push origin:master等同于git push origin --delete master
+	如果当前分支和远程分支存在追踪关系，则本地分支和远程分支都可以被省略
+	git push origin
+	如果当前分支只有一个追踪分支，那么主机名都可以省略
+	git push
+
+版本回退
+	1.只是修改了工作区的文件，还没有add
+	git checkout --<file>    把指定file文件在工作区的修改全部撤销
+
+	2.已经add了，还没有commit
+	git reset HEAD <file>    可以把暂存区的修改撤销掉，重新放回到工作区
+	再使用git checkout --<file>可以将工作区的修改也丢弃，
+
+	3.已经commit了
+	git reset --hard HEAD~1
+	HEAD表示当前版本，上一个版本用^表示，上上个版本用^^表示，上10个版本可以用HEAD~10表示
+	使用命令git reset --hard commit_id回到指定版本
+	用git log查看提交历史，用git reflog查看命令历史，以便确定回到哪个版本
+
+git reset --hard|soft|mixed|merge|keep <commitId>或HEAD
+	--hard  例如：git reset --hard HEAD～1   表示为将版本库回退1个版本，但是不仅仅是将本地版本库的头指针全部重置到指定版本，也会重置暂存区，并且会将工作区代码也回退到这个版本
+	--soft  例如：git reset --soft HEAD～1   表示将版本库软回退一个版本，所谓软回退表示将版本库的HEAD指针全部重置到指定版本，且将这次提交之后的所有变更都移动到暂存区
+	--mixed  默认参数，例如：git reset HEAD～1   表示将版本库回退一个版本，将版本库的HEAD指针全部重置到指定版本，且将这次提交之后的所有变更都移动到未暂存阶段
+	--merge  例如：git reset --merge ORIG_HEAD   表示回退到上一个版本，并且不清除工作区中的内容，比如当你使用git pull获取最新更新后后悔了，可以使用这个命令回退到git pull之前的状态。如果使用git reset --hard ORIG_HEAD，这个命令将会清空工作区，丢弃未使用git add的那些修改(关于ORIG_HEAD：Git通过记录HEAD指针的上次所在的位置ORIG_HEAD提供了回退的功能，当你发现某些操作失误了，比如错误的reset到了一个很早很早的版本，可以使用git reset --hard ORIG_HEAD回退到上一次reset之前)
+
+git log:
+	git log --pretty=oneline   每一行表示一次提交，一行内容包括commitId和commit message
+
+git checkout:
+	git checkout commitId  切换到指定commitID版本
+
+
+git branch --set-upstream dev origin/dev
+	指定本地dev分支与远程origin/dev分支的链接
+
+
+
+
+
+
+
