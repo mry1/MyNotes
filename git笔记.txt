@@ -48,6 +48,8 @@ git push:
 
 git reset --hard|soft|mixed|merge|keep <commitId>或HEAD
 	--hard  例如：git reset --hard HEAD～1   表示为将版本库回退1个版本，但是不仅仅是将本地版本库的头指针全部重置到指定版本，也会重置暂存区，并且会将工作区代码也回退到这个版本
+	git reset --hard origin/branch_oversea_wbl7365_wbl7361_t5891_rel_gionee
+
 	--soft  例如：git reset --soft HEAD～1   表示将版本库软回退一个版本，所谓软回退表示将版本库的HEAD指针全部重置到指定版本，且将这次提交之后的所有变更都移动到暂存区
 	--mixed  默认参数，例如：git reset HEAD～1   表示将版本库回退一个版本，将版本库的HEAD指针全部重置到指定版本，且将这次提交之后的所有变更都移动到未暂存阶段
 	--merge  例如：git reset --merge ORIG_HEAD   表示回退到上一个版本，并且不清除工作区中的内容，比如当你使用git pull获取最新更新后后悔了，可以使用这个命令回退到git pull之前的状态。如果使用git reset --hard ORIG_HEAD，这个命令将会清空工作区，丢弃未使用git add的那些修改(关于ORIG_HEAD：Git通过记录HEAD指针的上次所在的位置ORIG_HEAD提供了回退的功能，当你发现某些操作失误了，比如错误的reset到了一个很早很早的版本，可以使用git reset --hard ORIG_HEAD回退到上一次reset之前)
@@ -62,8 +64,21 @@ git checkout:
 git branch --set-upstream dev origin/dev
 	指定本地dev分支与远程origin/dev分支的链接
 
+添加远程仓库，建立连接
+git remote add origin git@github.com:mry1/MyNotes.git
+git push -u origin master
 
 
+warning: push.default 尚未设置，它的默认值在 Git 2.0 已从 'matching'
+变更为 'simple'。若要不再显示本信息并保持传统习惯，进行如下设置：
+  git config --global push.default matching
+若要不再显示本信息并从现在开始采用新的使用习惯，设置：
+  git config --global push.default simple
+当 push.default 设置为 'matching' 后，git 将推送和远程同名的所有
+本地分支。
+从 Git 2.0 开始，Git 默认采用更为保守的 'simple' 模式，只推送当前
+分支到远程关联的同名分支，即 'git push' 推送当前分支。
+参见 'git help config' 并查找 'push.default' 以获取更多信息。
 
 
 

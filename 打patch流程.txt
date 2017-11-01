@@ -7,4 +7,8 @@
 6. 对比patch alps 和 代码的alps，合入冲突的。新增的， 以及检查是否有删除的
 7. 对比patch alps 的package 和 代码的alps/package_org
 8. 更新excel表
+
+对比packages
+查看是否有需要删除的文件
+
 9 上传patch
